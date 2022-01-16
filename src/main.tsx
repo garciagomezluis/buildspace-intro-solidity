@@ -8,6 +8,13 @@ import theme from './theme';
 import { WalletProvider } from './WalletContext';
 import WaveModal, { WaveModalProvider } from './WaveModal';
 
+declare global {
+    // eslint-disable-next-line no-unused-vars
+    interface Window {
+        ethereum: any;
+    }
+}
+
 ReactDOM.render(
     <React.StrictMode>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
