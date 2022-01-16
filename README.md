@@ -1,6 +1,12 @@
 # buildspace #0
 
-[Rinkeby Contract](https://rinkeby.etherscan.io/address/0x273bf03938e5bd36819707eda4bf556fE953fEeE)
+[Rinkeby Contract](https://rinkeby.etherscan.io/address/0x7647cA26cEd7450b7d01007f7F8607C81394cB6D)
+
+## TODOs
+
+* i18n support
+* framer motion + popups
+* refactor
 
 # Basic Sample Hardhat Project
 
