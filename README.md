@@ -8,7 +8,7 @@
 * framer motion + popups
 * front test
 * contract test
-* refactor
+* refactor (among others: move eslint rules to package)
 
 # Basic Sample Hardhat Project
 
