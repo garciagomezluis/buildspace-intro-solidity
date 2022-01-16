@@ -6,6 +6,8 @@
 
 * i18n support
 * framer motion + popups
+* front test
+* contract test
 * refactor
 
 # Basic Sample Hardhat Project
