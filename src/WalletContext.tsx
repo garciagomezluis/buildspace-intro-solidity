@@ -1,5 +1,5 @@
 import { useToast } from '@chakra-ui/react';
-import { FC, createContext, useEffect, useRef, useState } from 'react';
+import { FC, createContext, useEffect, useState } from 'react';
 
 import {
     MessagesInColumns,
@@ -31,20 +31,18 @@ export const WalletContext = createContext<IWallet>({
     set: async () => {},
 });
 
-// export const provider = getProvider();
+let provider: any = null;
 
 export const WalletProvider: FC = ({ children }) => {
-    const provider = useRef(getProvider());
-
     const [connected, setConnected] = useState(false);
     const [account, setAccount] = useState('');
     const [network, setNetwork] = useState('');
     const [networkError, setNetworkError] = useState(false);
     const toast = useToast();
 
-    const get = () => getWaves(provider.current);
+    const get = () => getWaves(provider);
 
-    const set = (value: string) => setWave(provider.current, value);
+    const set = (value: string) => setWave(provider, value);
 
     const showToast = (description: string) => {
         toast({
@@ -76,8 +74,12 @@ export const WalletProvider: FC = ({ children }) => {
     }, [network]);
 
     useEffect(() => {
+        if (!window.ethereum) return;
+
+        provider = getProvider();
+
         (async () => {
-            const account = await getAccount(provider.current);
+            const account = await getAccount(provider);
 
             if (account) setAccount(account);
         })();
@@ -99,7 +101,7 @@ export const WalletProvider: FC = ({ children }) => {
             }
         });
 
-        provider.current.on('network', async (new_, old_) => {
+        provider.on('network', async (new_: any, old_: any) => {
             if (old_ && new_?.name === 'rinkeby') {
                 window.location.reload();
 
@@ -114,15 +116,17 @@ export const WalletProvider: FC = ({ children }) => {
         if (connected) return;
 
         try {
-            await requestAccount(provider.current);
+            await requestAccount(provider);
         } catch (error) {
             showToast((error as Error).message);
         }
     };
 
     const updateNetwork = async () => {
+        if (!provider) return;
+
         try {
-            setNetwork((await provider.current.getNetwork()).name);
+            setNetwork((await provider.getNetwork()).name);
         } catch (error) {
             showToast((error as Error).message);
         }
