@@ -1,3 +1,6 @@
+/* eslint-disable import/no-absolute-path */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import { useContext } from 'react';
 
 import {
@@ -14,9 +17,9 @@ import {
     VStack,
 } from '@chakra-ui/react';
 
-import airplaneLogo from '../public/airplane.png';
-import readLogo from '../public/read.png';
-import walletLogo from '../public/wallet.png';
+import airplaneLogo from '/airplane.png';
+import readLogo from '/read.png';
+import walletLogo from '/wallet.png';
 
 import { WalletContext } from './WalletContext';
 import WavePanel from './WavePanel';
@@ -100,39 +103,83 @@ const RealApp = () => {
             </Box>
 
             {!connected && (
-                <Box py="20">
+                <Box>
                     <Container maxW="container.xl">
                         <Stack direction={{ base: 'column', md: 'row' }} justify="space-around">
-                            <VStack>
+                            <VStack
+                                bg="linear-gradient(350deg, #22c1c3, #fd2df5);"
+                                flex="1"
+                                mx="20px !important"
+                                p="10"
+                                pos="relative"
+                                pt="20"
+                            >
                                 <Image
                                     alt="wallet"
-                                    blockSize="100px"
+                                    blockSize="150px"
+                                    pos="absolute"
                                     src={walletLogo}
                                     title="MetaMask"
+                                    top="-75px"
                                 />
-                                <Text fontSize="20" fontWeight={500}>
+                                <Text fontSize="20" fontWeight={700}>
                                     Connect your wallet
                                 </Text>
-                                <Text>And start to participate</Text>
+                                <Text>
+                                    A wallet will let you sign transactions to send messages over
+                                    the Ethereum network. Need to have some ETH in order to pay the
+                                    Gas required (~300K).
+                                </Text>
                             </VStack>
-                            <VStack>
+                            <VStack
+                                bg="linear-gradient(350deg, #22c1c3, #fd2df5);"
+                                flex="1"
+                                mx="20px !important"
+                                p="10"
+                                pos="relative"
+                                pt="20"
+                            >
                                 <Image
                                     alt="airplane"
-                                    blockSize="100px"
+                                    blockSize="150px"
+                                    pos="absolute"
                                     src={airplaneLogo}
                                     title="airdrop"
+                                    top="-75px"
                                 />
-                                <Text fontSize="20" fontWeight={500}>
+                                <Text fontSize="20" fontWeight={700}>
                                     Write
                                 </Text>
-                                <Text>Be elegible for an gift in ETH</Text>
+                                <Text>
+                                    Send me a nice message! &quot;Hello World&quot; may be? Do you
+                                    speak in spanish? What about &quot;Hola Mundo!&quot;. After
+                                    sending your message, you will have a change to win some small
+                                    amount of ETH!
+                                </Text>
                             </VStack>
-                            <VStack>
-                                <Image alt="read" blockSize="100px" src={readLogo} title="read" />
-                                <Text fontSize="20" fontWeight={500}>
+                            <VStack
+                                bg="linear-gradient(350deg, #22c1c3, #fd2df5);"
+                                flex="1"
+                                mx="20px !important"
+                                p="10"
+                                pos="relative"
+                                pt="20"
+                            >
+                                <Image
+                                    alt="read"
+                                    blockSize="150px"
+                                    pos="absolute"
+                                    src={readLogo}
+                                    title="read"
+                                    top="-75px"
+                                />
+                                <Text fontSize="20" fontWeight={700}>
                                     Read
                                 </Text>
-                                <Text>Do not stop reading over the book!</Text>
+                                <Text>
+                                    Do not stop participating! Get into the code, send messages, or
+                                    just read the comments from all around the world!
+                                </Text>
                             </VStack>
                         </Stack>
                     </Container>

@@ -86,8 +86,6 @@ export const WalletProvider: FC = ({ children }) => {
 
         // https://github.com/ethers-io/ethers.js/issues/1396
         window.ethereum.on('accountsChanged', async (accounts: string[]) => {
-            console.log('accounts changed', accounts);
-
             const [account] = accounts;
 
             try {
