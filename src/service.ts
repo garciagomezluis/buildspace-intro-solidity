@@ -9,6 +9,16 @@ const COLUMNS_AMOUNT = 3;
 const CONTRACT_ADDRESS = '0x7647cA26cEd7450b7d01007f7F8607C81394cB6D';
 // const CONTRACT_ADDRESS = '0x7476C26dCD3436c164d3eCFBB00896aB976e3dA0';
 
+const MESSAGE = `
+Hi! I'm Luis, a web2 dev based in Buenos Aires transitioning into web3. This is one of some projects I built to prepare to apply for jobs applications. Feel free to DMme! @lucho_asd.
+
+This site's been built with React.js + Chakra UI in the frontend. ethers.js as the library handling the interaction with MetaMask.
+
+A contract written Solidity 0.8.0 and deployed in the Rinkeby network, using the Hardhat development environment.
+
+Interested about the code? Check this out on GitHub (link above). Things to keep working on: tests, framer motion integration, i18n...
+`;
+
 export type Message = {
     id: string;
     address: string;
@@ -77,29 +87,7 @@ export const getWaves = async (provider: Web3Provider) => {
             id: '0',
             address: '0x0',
             date: new Date(),
-            message:
-                "Hi! I'm Luis, a web2 dev based in Buenos Aires transitioning into web3. This is one of some projects I built to prepare to apply for jobs applications. Feel free to DMme! @lucho_asd.",
-        },
-        {
-            id: '1',
-            address: '0x0',
-            date: new Date(),
-            message:
-                "This site's been built with React.js + Chakra UI in the frontend. ethers.js as the library handling the interaction with MetaMask.",
-        },
-        {
-            id: '2',
-            address: '0x0',
-            date: new Date(),
-            message:
-                'A contract written Solidity 0.8.0 and deployed in the Rinkeby network, using the Hardhat development environment.',
-        },
-        {
-            id: '3',
-            address: '0x0',
-            date: new Date(),
-            message:
-                'Interested about the code? Check this out on GitHub (link above). Things to keep working on: tests, framer motion integration, i18n...',
+            message: MESSAGE,
         },
     ].concat(
         waves.map((w: any) => {
