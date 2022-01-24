@@ -159,8 +159,8 @@ const RealApp = () => {
                                     Write
                                 </Text>
                                 <Text>
-                                    Send me a nice message! &quot;Hello World&quot; may be? Do you
-                                    speak in spanish? What about &quot;Hola Mundo!&quot;. After
+                                    Send me a nice message! &quot;Hello World&quot; maybe? Do you
+                                    speak spanish? What about &quot;Hola Mundo!&quot;?. After
                                     sending your message, you will have a change to win some small
                                     amount of ETH!
                                 </Text>
