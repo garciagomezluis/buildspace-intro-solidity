@@ -2,6 +2,11 @@
 
 [Rinkeby Contract](https://rinkeby.etherscan.io/address/0x7647cA26cEd7450b7d01007f7F8607C81394cB6D)
 
+[Site](https://garciagomezluis.github.io/buildspace-intro-solidity/)
+
+![Before connect](./public/homebeforeconnect.jpeg)
+![After connect](./public/homeafterconnect.jpeg)
+
 ## TODOs
 
 * i18n support
