@@ -197,7 +197,9 @@ const WavePanel: FC = () => {
                         return (
                             <Box
                                 key={Math.random().toString().substring(2)}
-                                flex={{ base: '100%', md: '1' }}
+                                flex={{ base: '100%', lg: '1' }}
+                                me={{ base: '0 !important', lg: '5px !important' }}
+                                ms={{ base: '0 !important', lg: '5px !important' }}
                             >
                                 {msgs.map((x) => (
                                     <WaveMessage key={x.id} message={x.message} />

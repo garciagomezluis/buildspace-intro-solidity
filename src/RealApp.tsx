@@ -32,7 +32,7 @@ const RealApp = () => {
     return (
         <>
             <Box>
-                <Container maxW="container.xl">
+                <Container maxW="container.xl" minW="400px">
                     <HStack h="10" my="6">
                         <HStack align="center">
                             <Link alt="buildspace" href="https://buildspace.so">
@@ -70,10 +70,14 @@ const RealApp = () => {
                 </Container>
             </Box>
 
-            <Box bg="blue.800" mb="10" py="20">
-                <Container maxW="container.xl">
-                    <Stack direction={{ base: 'column', md: 'row' }} justify="space-between">
-                        <VStack align="flex-start" maxW={{ md: '50%' }}>
+            <Box bg="blue.800" mb="10" minW="400px" py="20">
+                <Container maxW="container.xl" minW="400px">
+                    <Stack
+                        align="center"
+                        direction={{ base: 'column', lg: 'row' }}
+                        justify="space-between"
+                    >
+                        <VStack align="flex-start" maxW={{ lg: '50%' }}>
                             <Text fontSize="5xl" fontWeight={700} w="full">
                                 SendMe a Wave!
                             </Text>
@@ -95,6 +99,7 @@ const RealApp = () => {
                         </VStack>
                         <Image
                             alt="buildspace nft"
+                            mt={{ base: '70px !important', lg: '0 !important' }}
                             src="https://tokens.buildspace.so/assets/CHf7d3f8a8-5ac3-4676-8fe4-220e8a755104-547/render.png"
                             title="buildspace nft"
                             w="300px"
@@ -105,11 +110,12 @@ const RealApp = () => {
 
             {!interactionAllowed && (
                 <Box>
-                    <Container maxW="container.xl">
-                        <Stack direction={{ base: 'column', md: 'row' }} justify="space-around">
+                    <Container maxW="container.xl" minW="400px">
+                        <Stack direction={{ base: 'column', lg: 'row' }} justify="space-around">
                             <VStack
                                 bg="linear-gradient(350deg, #22c1c3, #fd2df5);"
                                 flex="1"
+                                mt={{ base: '100px !important', lg: '0 !important' }}
                                 mx="20px !important"
                                 p="10"
                                 pos="relative"
@@ -135,6 +141,7 @@ const RealApp = () => {
                             <VStack
                                 bg="linear-gradient(350deg, #22c1c3, #fd2df5);"
                                 flex="1"
+                                mt={{ base: '100px !important', lg: '0 !important' }}
                                 mx="20px !important"
                                 p="10"
                                 pos="relative"
@@ -161,6 +168,7 @@ const RealApp = () => {
                             <VStack
                                 bg="linear-gradient(350deg, #22c1c3, #fd2df5);"
                                 flex="1"
+                                mt={{ base: '100px !important', lg: '0 !important' }}
                                 mx="20px !important"
                                 p="10"
                                 pos="relative"
@@ -188,7 +196,7 @@ const RealApp = () => {
             )}
 
             {interactionAllowed && (
-                <Container maxW="container.xl">
+                <Container maxW="container.xl" minW="400px">
                     <WavePanel />
                 </Container>
             )}

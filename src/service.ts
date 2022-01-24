@@ -5,7 +5,7 @@ import { Web3Provider } from '@ethersproject/providers';
 import { ethers } from 'ethers';
 import { abi as wavePortalABI } from '../artifacts/contracts/WavePortal.sol/WavePortal.json';
 
-const COLUMNS_AMOUNT = 4;
+const COLUMNS_AMOUNT = 3;
 const CONTRACT_ADDRESS = '0x7647cA26cEd7450b7d01007f7F8607C81394cB6D';
 // const CONTRACT_ADDRESS = '0x7476C26dCD3436c164d3eCFBB00896aB976e3dA0';
 
