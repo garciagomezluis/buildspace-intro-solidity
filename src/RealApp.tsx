@@ -26,7 +26,8 @@ import WavePanel from './WavePanel';
 // import WavePanel from './WavePanel';
 
 const RealApp = () => {
-    const { connect, account, network, connected, networkError } = useContext(WalletContext);
+    const { connect, account, network, connected, networkError, interactionAllowed } =
+        useContext(WalletContext);
 
     return (
         <>
@@ -102,7 +103,7 @@ const RealApp = () => {
                 </Container>
             </Box>
 
-            {!connected && (
+            {!interactionAllowed && (
                 <Box>
                     <Container maxW="container.xl">
                         <Stack direction={{ base: 'column', md: 'row' }} justify="space-around">
@@ -186,9 +187,11 @@ const RealApp = () => {
                 </Box>
             )}
 
-            <Container maxW="container.xl">
-                <WavePanel />
-            </Container>
+            {interactionAllowed && (
+                <Container maxW="container.xl">
+                    <WavePanel />
+                </Container>
+            )}
         </>
     );
 };

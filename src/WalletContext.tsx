@@ -16,6 +16,7 @@ interface IWallet {
     account: string;
     network: string;
     networkError: boolean;
+    interactionAllowed: boolean;
     get(): Promise<MessagesInColumns>;
     // eslint-disable-next-line no-unused-vars
     set(v: string): Promise<void>;
@@ -27,17 +28,38 @@ export const WalletContext = createContext<IWallet>({
     account: '',
     network: '',
     networkError: false,
+    interactionAllowed: false,
     get: async () => ({} as MessagesInColumns),
     set: async () => {},
 });
 
+const supportedNetworks = new Set(['rinkeby']);
+
+const isValidAccount = (account: string) => account !== '';
+
+const isValidNetwork = (network: string) => network !== '';
+
+const isNetworkInWhitelist = (network: string) => supportedNetworks.has(network);
+
 let provider: any = null;
 
 export const WalletProvider: FC = ({ children }) => {
+    // si se pudo obtener un account !== "" y una network !== ""
     const [connected, setConnected] = useState(false);
+
+    // account
     const [account, setAccount] = useState('');
+
+    // network
     const [network, setNetwork] = useState('');
+
+    // si la network es inválida (network !== rinkeby)
     const [networkError, setNetworkError] = useState(false);
+
+    // si la conexión está establecida
+    // si la network es válida
+    const [interactionAllowed, setInteractionAllowed] = useState(false);
+
     const toast = useToast();
 
     const get = () => getWaves(provider);
@@ -55,23 +77,29 @@ export const WalletProvider: FC = ({ children }) => {
     };
 
     useEffect(() => {
-        setConnected(account !== '' && network !== '');
+        console.log(`account: ${account}`);
+        console.log(`network: ${network}`);
+        console.log(`connected: ${connected}`);
+        console.log(`networkError: ${networkError}`);
+        console.log(`interactionAllowed: ${interactionAllowed}`);
+        console.log('=============================');
+    }, [account, network, networkError, connected, interactionAllowed]);
+
+    useEffect(() => {
+        const networkEnabled = !isValidNetwork(network) || isNetworkInWhitelist(network);
+
+        if (!networkEnabled) showToast('Please, switch to Rinkeby network.');
+
+        setNetworkError(!networkEnabled);
+    }, [network]);
+
+    useEffect(() => {
+        setConnected(isValidAccount(account) && isValidNetwork(network));
     }, [account, network]);
 
     useEffect(() => {
-        if (account === '') setNetwork('');
-
-        updateNetwork();
-    }, [account]);
-
-    useEffect(() => {
-        if (network !== 'rinkeby' && network !== '') {
-            setNetworkError(true);
-            showToast('Please, switch to Rinkeby network.');
-        } else {
-            setNetworkError(false);
-        }
-    }, [network]);
+        setInteractionAllowed(connected && !networkError);
+    }, [connected, networkError]);
 
     useEffect(() => {
         if (!window.ethereum) return;
@@ -106,7 +134,13 @@ export const WalletProvider: FC = ({ children }) => {
                 return;
             }
 
-            updateNetwork();
+            try {
+                const network = (await provider.getNetwork()).name;
+
+                setNetwork(network);
+            } catch (error) {
+                showToast((error as Error).message);
+            }
         });
     }, []);
 
@@ -120,19 +154,18 @@ export const WalletProvider: FC = ({ children }) => {
         }
     };
 
-    const updateNetwork = async () => {
-        if (!provider) return;
-
-        try {
-            setNetwork((await provider.getNetwork()).name);
-        } catch (error) {
-            showToast((error as Error).message);
-        }
-    };
-
     return (
         <WalletContext.Provider
-            value={{ connect, connected, account, network, networkError, get, set }}
+            value={{
+                connect,
+                connected,
+                account,
+                network,
+                networkError,
+                interactionAllowed,
+                get,
+                set,
+            }}
         >
             {children}
         </WalletContext.Provider>

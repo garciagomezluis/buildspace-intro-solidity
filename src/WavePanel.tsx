@@ -164,14 +164,12 @@ const WavePanel: FC = () => {
     const [messages, setMessages] = useState<MessagesInColumns>({});
     const [loading, setLoading] = useState(true);
 
-    const { connected, networkError, get } = useContext(WalletContext);
+    const { get } = useContext(WalletContext);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
     const loadWaves = async () => {
-        if (connected) {
-            setMessages(await get());
-        }
+        setMessages(await get());
         inputRef.current?.focus();
     };
 
@@ -181,9 +179,7 @@ const WavePanel: FC = () => {
             await loadWaves();
             setLoading(false);
         })();
-    }, [connected]);
-
-    if (!connected || networkError) return null;
+    }, []);
 
     return (
         <>
