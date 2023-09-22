@@ -1,5 +1,7 @@
 # buildspace #0
 
+> NOTE: Rinkeby is deprecated. Some links here might not work properly.
+
 [Rinkeby Contract](https://rinkeby.etherscan.io/address/0x7647cA26cEd7450b7d01007f7F8607C81394cB6D)
 
 [Site](https://garciagomezluis.github.io/buildspace-intro-solidity/)
